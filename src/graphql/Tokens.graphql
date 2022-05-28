@@ -1,0 +1,26 @@
+query Token($id: ID!, $block: Block_height) {
+  token(id: $id) {
+    ...SubgraphToken
+  }
+}
+
+query Tokens(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Token_orderBy
+  $where: Token_filter
+) {
+  tokens(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphToken
+  }
+}
+
+fragment SubgraphToken on Token {
+  address
+  name
+  symbol
+  id
+  decimals
+}

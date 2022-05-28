@@ -1,0 +1,53 @@
+query TransferSentToL2($id: ID!, $block: Block_height) {
+  transferSentToL2(id: $id) {
+    ...SubgraphTransferSentToL2
+  }
+}
+
+query TransferSentToL2S(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: TransferSentToL2_orderBy
+  $where: TransferSentToL2_filter
+) {
+  transferSentToL2S(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransferSentToL2
+  }
+}
+
+fragment SubgraphTransferSentToL2 on TransferSentToL2 {
+  amount
+  amountOutMin
+  deadline
+  contractAddress
+  blockNumber
+  destinationChainId
+  from
+  id
+  recipient
+  relayer
+  relayerFee
+  token
+  timestamp
+  transactionHash
+  transactionIndex
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

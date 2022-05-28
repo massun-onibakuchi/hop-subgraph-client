@@ -1,0 +1,49 @@
+query WithdrawalBondSettled($id: ID!, $block: Block_height) {
+  withdrawalBondSettled(id: $id) {
+    ...SubgraphWithdrawalBondSettled
+  }
+}
+
+query WithdrawalBondSettleds(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: WithdrawalBondSettled_orderBy
+  $where: WithdrawalBondSettled_filter
+) {
+  withdrawalBondSettleds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphWithdrawalBondSettled
+  }
+}
+
+fragment SubgraphWithdrawalBondSettled on WithdrawalBondSettled {
+  blockNumber
+  bonder
+  contractAddress
+  from
+  rootHash
+  id
+  timestamp
+  token
+  transactionHash
+  transactionIndex
+  transferId
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

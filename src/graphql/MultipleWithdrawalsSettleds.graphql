@@ -1,0 +1,49 @@
+query MultipleWithdrawalsSettled($id: ID!, $block: Block_height) {
+  multipleWithdrawalsSettled(id: $id) {
+    ...SubgraphMultipleWithdrawalsSettled
+  }
+}
+
+query MultipleWithdrawalsSettleds(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: MultipleWithdrawalsSettled_orderBy
+  $where: MultipleWithdrawalsSettled_filter
+) {
+  multipleWithdrawalsSettleds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphMultipleWithdrawalsSettled
+  }
+}
+
+fragment SubgraphMultipleWithdrawalsSettled on MultipleWithdrawalsSettled {
+  bonder
+  blockNumber
+  contractAddress
+  from
+  rootHash
+  id
+  timestamp
+  token
+  totalBondsSettled
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+  transactionHash
+  transactionIndex
+}

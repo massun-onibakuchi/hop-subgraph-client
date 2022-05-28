@@ -1,0 +1,38 @@
+query Volume($id: ID!, $block: Block_height) {
+  volume(id: $id) {
+    ...SubgraphVolume
+  }
+}
+
+query Volumes(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Volume_orderBy
+  $where: Volume_filter
+) {
+  volumes(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphVolume
+  }
+}
+
+fragment SubgraphVolume on Volume {
+  id
+  token
+  amount
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

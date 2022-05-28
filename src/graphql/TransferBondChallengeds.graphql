@@ -1,0 +1,49 @@
+query TransferBondChallenged($id: ID!, $block: Block_height) {
+  transferBondChallenged(id: $id) {
+    ...SubgraphTransferBondChallenged
+  }
+}
+
+query TransferBondChallengeds(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: TransferBondChallenged_orderBy
+  $where: TransferBondChallenged_filter
+) {
+  transferBondChallengeds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransferBondChallenged
+  }
+}
+
+fragment SubgraphTransferBondChallenged on TransferBondChallenged {
+  blockNumber
+  contractAddress
+  from
+  id
+  originalAmount
+  timestamp
+  rootHash
+  token
+  transactionHash
+  transactionIndex
+  transferRootId
+  tokenEntity {
+    decimals
+    id
+    name
+    symbol
+    address
+  }
+  transaction {
+    ...SubgraphTransaction
+  }
+}

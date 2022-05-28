@@ -1,0 +1,39 @@
+query ChallengeResolved($id: ID!, $block: Block_height) {
+  challengeResolved(id: $id) {
+    ...SubgraphChallengeResolved
+  }
+}
+
+query ChallengeResolveds(
+  $skip: Int
+  $first: Int
+  $block: Block_height
+  $orderDirection: OrderDirection
+  $orderBy: ChallengeResolved_orderBy
+  $where: ChallengeResolved_filter
+) {
+  challengeResolveds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphChallengeResolved
+  }
+}
+
+fragment SubgraphChallengeResolved on ChallengeResolved {
+  blockNumber
+  contractAddress
+  originalAmount
+  from
+  id
+  rootHash
+  timestamp
+  token
+  transactionHash
+  transactionIndex
+  transferRootId
+}

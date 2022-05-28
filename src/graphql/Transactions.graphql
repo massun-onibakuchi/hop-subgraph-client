@@ -1,0 +1,36 @@
+query Transaction($id: ID!, $block: Block_height) {
+  transaction(id: $id) {
+    ...SubgraphTransaction
+  }
+}
+
+query Transactions(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Transaction_orderBy
+  $where: Transaction_filter
+) {
+  transactions(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransaction
+  }
+}
+
+fragment SubgraphTransaction on Transaction {
+  from
+  gasLimit
+  gasPrice
+  hash
+  id
+  index
+  to
+  value
+}

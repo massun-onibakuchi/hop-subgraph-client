@@ -1,0 +1,95 @@
+query BonderAdded($id: ID!, $block: Block_height) {
+  bonderAdded(id: $id) {
+    ...SubgraphBonderAdded
+  }
+}
+
+query BonderAddeds(
+  $skip: Int
+  $first: Int
+  $block: Block_height
+  $orderDirection: OrderDirection
+  $orderBy: BonderAdded_orderBy
+  $where: BonderAdded_filter
+) {
+  bonderAddeds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphBonderAdded
+  }
+}
+
+fragment SubgraphBonderAdded on BonderAdded {
+  blockNumber
+  contractAddress
+  from
+  id
+  newBonder
+  timestamp
+  token
+  transactionHash
+  transactionIndex
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+  transaction {
+    ...SubgraphTransaction
+  }
+}
+
+query BonderRemoved($id: ID!, $block: Block_height) {
+  bonderRemoved(id: $id) {
+    ...SubgraphBonderRemoved
+  }
+}
+
+query BonderRemoveds(
+  $skip: Int
+  $first: Int
+  $block: Block_height
+  $orderDirection: OrderDirection
+  $orderBy: BonderRemoved_orderBy
+  $where: BonderRemoved_filter
+) {
+  bonderRemoveds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphBonderRemoved
+  }
+}
+
+fragment SubgraphBonderRemoved on BonderRemoved {
+  blockNumber
+  contractAddress
+  from
+  id
+  previousBonder
+  timestamp
+  token
+  transactionHash
+  transactionIndex
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+  transaction {
+    ...SubgraphTransaction
+  }
+}

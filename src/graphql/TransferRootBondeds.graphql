@@ -1,0 +1,49 @@
+query TransferRootBonded($id: ID!, $block: Block_height) {
+  transferRootBonded(id: $id) {
+    ...SubgraphTransferRootBonded
+  }
+}
+
+query TransferRootBondeds(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: TransferRootBonded_orderBy
+  $where: TransferRootBonded_filter
+) {
+  transferRootBondeds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransferRootBonded
+  }
+}
+
+fragment SubgraphTransferRootBonded on TransferRootBonded {
+  amount
+  blockNumber
+  id
+  contractAddress
+  from
+  root
+  timestamp
+  token
+  tokenEntity {
+    address
+    decimals
+    name
+    id
+    symbol
+  }
+  transactionHash
+  transaction {
+    ...SubgraphTransaction
+  }
+  transactionIndex
+  transactionIndex
+}

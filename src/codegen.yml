@@ -1,0 +1,18 @@
+overwrite: true
+generates:
+    src/generated/hop-subgraph-types.ts:
+        schema: ${SUBGRAPH_URL:https://api.thegraph.com/subgraphs/name/hop-protocol/hop-mainnet}
+        documents: 'src/graphql/**/*.graphql'
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-graphql-request
+        config:
+            scalars:
+                BigInt: string
+                Bytes: string
+                BigDecimal: string
+    src/generated/hop-subgraph-schema.graphql:
+        schema: ${SUBGRAPH_URL:https://api.thegraph.com/subgraphs/name/hop-protocol/hop-mainnet}
+        plugins:
+            - schema-ast

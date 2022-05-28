@@ -1,0 +1,41 @@
+query Stake($id: ID!, $block: Block_height) {
+  stake(id: $id) {
+    ...SubgraphStake
+  }
+}
+
+query Stakes(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Stake_orderBy
+  $where: Stake_filter
+) {
+  stakes(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphStake
+  }
+}
+
+fragment SubgraphStake on Stake {
+  amount
+  account
+  blockNumber
+  contractAddress
+  from
+  timestamp
+  id
+  token
+  transactionHash
+  transactionIndex
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

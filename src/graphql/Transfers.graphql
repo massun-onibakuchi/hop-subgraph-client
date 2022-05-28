@@ -1,0 +1,48 @@
+query Transfer($id: ID!, $block: Block_height) {
+  transfer(id: $id) {
+    ...SubgraphTransfer
+  }
+}
+
+query Transfers(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Transfer_orderBy
+  $where: Transfer_filter
+) {
+  transfers(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransfer
+  }
+}
+
+fragment SubgraphTransfer on Transfer {
+  blockNumber
+  contractAddress
+  from
+  timestamp
+  id
+  to
+  token
+  transactionHash
+  transactionIndex
+  value
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

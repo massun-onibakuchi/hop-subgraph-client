@@ -1,0 +1,48 @@
+query TransferRootSet($id: ID!, $block: Block_height) {
+  transferRootSet(id: $id) {
+    ...SubgraphTransferRootSet
+  }
+}
+
+query TransferRootSets(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: TransferRootSet_orderBy
+  $where: TransferRootSet_filter
+) {
+  transferRootSets(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransferRootSet
+  }
+}
+
+fragment SubgraphTransferRootSet on TransferRootSet {
+  blockNumber
+  contractAddress
+  id
+  from
+  rootHash
+  timestamp
+  token
+  transactionIndex
+  transactionHash
+  totalAmount
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

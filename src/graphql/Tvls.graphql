@@ -1,0 +1,24 @@
+query Tvl($id: ID!, $block: Block_height) {
+  tvl(id: $id) {
+    ...SubgraphTvl
+  }
+}
+
+query Tvls(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Tvl_orderBy
+  $where: Tvl_filter
+) {
+  tvls(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphTvl
+  }
+}
+
+fragment SubgraphTvl on Tvl {
+  id
+  amount
+  token
+}

@@ -1,0 +1,36 @@
+query Block($id: ID!, $block: Block_height) {
+  block(id: $id) {
+    ...SubgraphBlock
+  }
+}
+
+query Blocks(
+  $skip: Int
+  $first: Int
+  $orderBy: Block_orderBy
+  $orderDirection: OrderDirection
+  $where: Block_filter
+  $block: Block_height
+) {
+  blocks(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphBlock
+  }
+}
+
+fragment SubgraphBlock on Block {
+  id
+  author
+  gasLimit
+  difficulty
+  gasUsed
+  hash
+  number
+  parentHash
+  receiptsRoot
+  size
+  timestamp
+  transactionsRoot
+  unclesHash
+  totalDifficulty
+  stateRoot
+}

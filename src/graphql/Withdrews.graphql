@@ -1,0 +1,50 @@
+query Withdrew($id: ID!, $block: Block_height) {
+  withdrew(id: $id) {
+    ...SubgraphWithdrew
+  }
+}
+
+query Withdrews(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Withdrew_orderBy
+  $where: Withdrew_filter
+) {
+  withdrews(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphWithdrew
+  }
+}
+
+fragment SubgraphWithdrew on Withdrew {
+  amount
+  blockNumber
+  contractAddress
+  token
+  recipient
+  from
+  id
+  timestamp
+  transactionHash
+  transferId
+  transferNonce
+  transactionIndex
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

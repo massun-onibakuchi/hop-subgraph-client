@@ -1,0 +1,39 @@
+query DailyVolume($id: ID!, $block: Block_height) {
+  dailyVolume(id: $id) {
+    ...SubgraphDailyVolume
+  }
+}
+
+query DailyVolumes(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: DailyVolume_orderBy
+  $where: DailyVolume_filter
+) {
+  dailyVolumes(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphDailyVolume
+  }
+}
+
+fragment SubgraphDailyVolume on DailyVolume {
+  id
+  amount
+  date
+  token
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

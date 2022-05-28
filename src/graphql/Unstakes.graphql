@@ -1,0 +1,48 @@
+query Unstake($id: ID!, $block: Block_height) {
+  unstake(id: $id) {
+    ...SubgraphUnstake
+  }
+}
+
+query Unstakes(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: Unstake_orderBy
+  $where: Unstake_filter
+) {
+  unstakes(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphUnstake
+  }
+}
+
+fragment SubgraphUnstake on Unstake {
+  account
+  amount
+  blockNumber
+  contractAddress
+  from
+  id
+  timestamp
+  token
+  transactionIndex
+  transactionHash
+  transaction {
+    ...SubgraphTransaction
+  }
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+}

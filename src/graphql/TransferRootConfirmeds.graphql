@@ -1,0 +1,50 @@
+query TransferRootConfirmed($id: ID!, $block: Block_height) {
+  transferRootConfirmed(id: $id) {
+    ...SubgraphTransferRootConfirmed
+  }
+}
+
+query TransferRootConfirmeds(
+  $skip: Int
+  $first: Int
+  $orderDirection: OrderDirection
+  $block: Block_height
+  $orderBy: TransferRootConfirmed_orderBy
+  $where: TransferRootConfirmed_filter
+) {
+  transferRootConfirmeds(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphTransferRootConfirmed
+  }
+}
+
+fragment SubgraphTransferRootConfirmed on TransferRootConfirmed {
+  blockNumber
+  destinationChainId
+  contractAddress
+  from
+  originChainId
+  id
+  rootHash
+  timestamp
+  token
+  tokenEntity {
+    address
+    decimals
+    id
+    name
+    symbol
+  }
+  totalAmount
+  transactionHash
+  transactionIndex
+  transaction {
+    ...SubgraphTransaction
+  }
+}
