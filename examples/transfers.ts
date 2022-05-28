@@ -5,7 +5,7 @@ import { Transfer_OrderBy, OrderDirection, SubgraphTransferFragment } from '../s
 dotenv.config()
 
 async function main() {
-  const endpoint = 'https://api.thegraph.com/subgraphs/name/perpetual-protocol/perpetual-v2-optimism'
+  const endpoint = 'https://api.thegraph.com/subgraphs/name/hop-protocol/hop-mainnet'
 
   const client = createSubgraphClient(process.env.SUBGRAPH_URL || endpoint)
 

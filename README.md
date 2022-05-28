@@ -26,13 +26,14 @@ yarn add hop-subgraph-client
 
 ```typescript
 import { createSubgraphClient } from 'hop-subgraph-client'
-
-const client = createSubgraphClient(process.env.SUBGRAPH_URL)
+const SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/hop-protocol/hop-mainnet'
+const client = createSubgraphClient(SUBGRAPH_URL)
 ```
 
 #### To list transfers
 
 ```typescript
+import { Transfer_OrderBy, OrderDirection } from 'hop-subgraph-client'
 // List transfers
 const { transfers } = await client.Transfers({
   first: 2,
@@ -45,11 +46,12 @@ const { transfers } = await client.Transfers({
 
 ```typescript
 const { tokens } = await client.Tokens()
-const { tvl } = await client.Tvl({ id: tokens[0].id })
-console.log(`${tokens[0].name} tvl: ${tvl}`)
+const { tvls } = await client.Tvls()
+console.log('tokens :>> ', tokens)
+console.log('tvls :>> ', tvls)
 ```
 
-More examples are [here](./src/examples/)
+More examples are [here](./examples/)
 
 ---
 
@@ -58,7 +60,8 @@ More examples are [here](./src/examples/)
 Created an `.env` file with a env variable:
 
 ```bash
-SUBGRAPH_URL=https://api.thegraph.com/subgraphs/name/hop-protocol/hop-<mainnet, optimism...>
+# https://api.thegraph.com/subgraphs/name/hop-protocol/hop-<mainnet, optimism...>
+SUBGRAPH_URL=<HOP_SUBGRAPH_URL>
 ```
 
 For local developement you can run
@@ -120,7 +123,7 @@ query Block($id: ID!, $block: Block_height) {
 The generated type will be exported from the module suffixed with `Fragment`. So in this example, your type is named: `SubgraphBlockFragment`.
 
 ```ts
-import { SubgraphBlockFragment } from './subgraph-types'
+import { SubgraphBlockFragment, Block_OrderBy } from 'hop-subgraph-client'
 
 // List blocks
 const { blocks } = await client.Blocks({
@@ -134,7 +137,7 @@ const block: SubgraphMarketFragment = blocks[0]
 
 ## Resync the schema
 
-Anytime there are schema changes published to `optimism-subgraph`, you'll need to resync the local schema by running `yarn gen:subgraph`.
+Anytime there are schema changes published to `hop-mainnet-subgraph`, you'll need to resync the local schema by running `yarn gen:subgraph`.
 
 If the update introduced breaking changes, running `yarn gen:subgraph` will fail and print the necessary changes that need to be made to the console.
 

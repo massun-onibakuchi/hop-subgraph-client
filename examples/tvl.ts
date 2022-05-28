@@ -4,7 +4,7 @@ import { createSubgraphClient } from '../src/subgraph'
 dotenv.config()
 
 async function main() {
-  const endpoint = 'https://api.thegraph.com/subgraphs/name/perpetual-protocol/perpetual-v2-optimism'
+  const endpoint = 'https://api.thegraph.com/subgraphs/name/hop-protocol/hop-mainnet'
 
   const client = createSubgraphClient(process.env.SUBGRAPH_URL || endpoint)
 
@@ -12,8 +12,8 @@ async function main() {
   const { tokens } = await client.Tokens()
   console.log('tokens :>> ', tokens)
 
-  const { tvl } = await client.Tvl({ id: tokens[0].id })
-  console.log(`${tokens[0].name} tvl :${tvl}`)
+  const { tvls } = await client.Tvls()
+  console.log('tvls :>> ', tvls)
 }
 
 main().catch(error => console.error(error))
