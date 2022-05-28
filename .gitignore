@@ -1,0 +1,25 @@
+node_modules
+
+.idea
+
+yarn-error.log
+
+.env
+
+TODO
+
+tmp
+
+.DS_Store
+
+docker
+
+# dist
+build/
+dist/
+
+# coverage
+coverage
+coverage.json
+
+src/generated

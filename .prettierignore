@@ -1,0 +1,11 @@
+node_modules
+artifacts
+build
+dist
+cache
+coverage*
+gasReporterOutput.json
+typechain-types
+
+src/abi/types/
+**/generated/
