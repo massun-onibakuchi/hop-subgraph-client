@@ -19,7 +19,7 @@
     "format:graphql": "prettier --write '**/*.graphql'",
     "lint": "eslint ./src --ext .ts --max-warnings 0",
     "lint:fix": "eslint ./src --ext .ts --max-warnings 0 --fix",
-    "gen:subgraph": "graphql-codegen --config src/codegen.yml -r dotenv/config"
+    "gen:subgraph": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
     "graphql": "^16.3.0",
